@@ -7,7 +7,7 @@
     "commit": "git-cz",
     "prebuild": "rimraf dist",
     "build": "npm-run-all --parallel build:*",
-    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js --ignore build-json.js src",
+    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js,build-json.js src",
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js -p",
     "test": "cross-env NODE_ENV=test nyc mocha",
