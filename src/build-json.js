@@ -66,10 +66,10 @@ const getAttributeList = (jQuery, listTitleSelector) => {
 jsdom.env(
   reactDomElementDocUrl,
   [jQueryScriptUrl],
-  (err, window) => {
+  (err, pageWindow) => {
     bail(err)
 
-    const jQuery = window.$
+    const jQuery = pageWindow.$
     const reactSVGAttributes = getAttributeList(
       jQuery, svgAttributeListTitleSelector,
     )

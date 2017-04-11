@@ -16,7 +16,8 @@
     "lint": "eslint src --fix",
     "validate": "npm-run-all --parallel test lint build",
     "release": "semantic-release pre && npm publish && semantic-release post",
-    "compile-build-script": "babel src/build-json.js --out-file build-json-compiled.js"
+    "compile-build-script": "babel src/build-json.js --out-file build-json-compiled.js",
+    "update-build-script": "npm run compile-build-script && node build-json-compiled.js"
   },
   "repository": {
     "type": "git",
@@ -107,7 +108,7 @@
       "path": "cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run validate",
+      "pre-commit": "npm run validate && npm run update-build-script",
       "commit-msg": "validate-commit-msg"
     }
   }
