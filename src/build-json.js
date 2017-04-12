@@ -54,6 +54,11 @@ const hardCodedReactHTMLAttributes = {
   link: [
     'color',
   ],
+  svg: [
+    'color',
+    'height',
+    'width',
+  ]
 }
 
 const getAttributeList = (jQuery, listTitleSelector) => {
