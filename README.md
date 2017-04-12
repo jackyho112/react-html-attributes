@@ -1,3 +1,6 @@
+[![Build Status][build-badge]][build-page]
+[![version][version-badge]][package]
+
 # react-html-attributes
 
 A store of html attributes keyed by their respective tags. Global attributes
@@ -53,3 +56,7 @@ Returns:
 
 <!-- Definition -->
 [license]: LICENSE
+[build-page]: https://travis-ci.org/wooorm/html-element-attributes
+[build-badge]: https://img.shields.io/travis/jackyho112/react-html-attributes.svg
+[version-badge]: https://img.shields.io/npm/v/react-html-attributes.svg?style=flat-square
+[package]: https://www.npmjs.com/package/react-html-attributes
