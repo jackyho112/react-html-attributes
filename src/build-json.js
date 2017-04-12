@@ -58,7 +58,7 @@ const hardCodedReactHTMLAttributes = {
     'color',
     'height',
     'width',
-  ]
+  ],
 }
 
 const getAttributeList = (jQuery, listTitleSelector) => {
