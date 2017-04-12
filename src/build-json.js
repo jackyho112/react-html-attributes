@@ -65,7 +65,7 @@ const getAttributeList = (jQuery, listTitleSelector) => {
   const titleNode = jQuery(listTitleSelector)
   const attributeListNode = titleNode.nextAll(attributeListParentNodeSelector).first()
 
-  return attributeListNode.text().replace(/\n/g, ' ').split(' ')
+  return attributeListNode.text().replace(/\n/g, ' ').trim().split(' ')
 }
 
 jsdom.env(
@@ -82,7 +82,6 @@ jsdom.env(
       jQuery, htmlAttributeListTitleSelector,
     )
 
-    // constru
     const reactHtmlAttributesFull = _.flow([
       _.partialRight(
         _.mapValues,

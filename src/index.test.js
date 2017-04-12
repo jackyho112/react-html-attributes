@@ -10,6 +10,14 @@ function isArrayOfStrings(array) {
   return array.every(item => typeof item === 'string')
 }
 
+function isArrayOfNonEmptyStrings(array) {
+  return array.every(item => item !== '')
+}
+
+function isArrayOfTrimmedStrings(array) {
+  return array.every(item => item === item.trim())
+}
+
 function areArraysUnique(array) {
   return array.every(items => items.length === _.uniq(items).length)
 }
@@ -27,6 +35,14 @@ describe('react-html-attributes', () => {
 
   it('should have a store of all string attributes', () => {
     expect(_.flatten(attributeLists)).to.satisfy(isArrayOfStrings)
+  })
+
+  it('should have a store of non-empty-string attributes', () => {
+    expect(_.flatten(attributeLists)).to.satisfy(isArrayOfNonEmptyStrings)
+  })
+
+  it('should have a store of attributes with no trailing spaces', () => {
+    expect(_.flatten(attributeLists)).to.satisfy(isArrayOfTrimmedStrings)
   })
 
   it('should have a store of all unique attributes', () => {
