@@ -87,13 +87,13 @@ jsdom.env(
         _.mapValues,
         attributes => _.intersection(attributes, reactHtmlAttributesPartial),
       ),
+      _.partialRight(_.set, 'svg', reactSVGAttributes),
       _.partialRight(
         _.mapValues,
         (attributes, tagName) => (
           _.uniq(attributes.concat(hardCodedReactHTMLAttributes[tagName] || []))
         ),
       ),
-      _.partialRight(_.set, 'svg', reactSVGAttributes),
       _.partialRight(_.mapValues, _.sortBy),
     ])(HTMLElementAttributes)
 
