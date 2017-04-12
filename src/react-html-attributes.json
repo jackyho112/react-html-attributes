@@ -67,8 +67,6 @@
   "blockquote": [
     "cite"
   ],
-  "body": [],
-  "br": [],
   "button": [
     "disabled",
     "form",
@@ -80,7 +78,6 @@
     "height",
     "width"
   ],
-  "caption": [],
   "col": [
     "span",
     "width"
@@ -104,9 +101,6 @@
   "dialog": [
     "open"
   ],
-  "dir": [],
-  "div": [],
-  "dl": [],
   "embed": [
     "height",
     "src",
@@ -137,12 +131,6 @@
     "cols",
     "rows"
   ],
-  "h1": [],
-  "h2": [],
-  "h3": [],
-  "h4": [],
-  "h5": [],
-  "h6": [],
   "head": [
     "profile"
   ],
@@ -200,7 +188,6 @@
   "ins": [
     "cite"
   ],
-  "isindex": [],
   "keygen": [
     "challenge",
     "disabled",
@@ -210,7 +197,6 @@
   "label": [
     "form"
   ],
-  "legend": [],
   "li": [
     "type",
     "value"
@@ -283,7 +269,6 @@
     "form",
     "name"
   ],
-  "p": [],
   "param": [
     "name",
     "type",
@@ -337,7 +322,6 @@
     "summary",
     "width"
   ],
-  "tbody": [],
   "td": [
     "headers",
     "height",
@@ -359,16 +343,12 @@
     "value",
     "wrap"
   ],
-  "tfoot": [],
   "th": [
     "headers",
     "height",
     "scope",
     "width"
   ],
-  "thead": [],
-  "time": [],
-  "tr": [],
   "track": [
     "default",
     "kind",

@@ -13,7 +13,7 @@ const attributeListParentNodeSelector = '.highlight'
 const attributeFileName = 'react-html-attributes.json'
 
 // attributes that cannot be crawled on the above website, copied from that site
-const hardCodedReactHTMLAttributes = {
+const reactHtmlAttributesCopied = {
   '*': [
     'className',
     'dangerouslySetInnerHTML',
@@ -75,26 +75,28 @@ jsdom.env(
     bail(err)
 
     const jQuery = pageWindow.$
-    const reactSVGAttributes = getAttributeList(
+    const reactSVGAttributesCrawled = getAttributeList(
       jQuery, svgAttributeListTitleSelector,
     )
-    const reactHtmlAttributesPartial = getAttributeList(
+    const reactHtmlAttributesCrawled = getAttributeList(
       jQuery, htmlAttributeListTitleSelector,
     )
 
+    // constru
     const reactHtmlAttributesFull = _.flow([
       _.partialRight(
         _.mapValues,
-        attributes => _.intersection(attributes, reactHtmlAttributesPartial),
+        attributes => _.intersection(attributes, reactHtmlAttributesCrawled),
       ),
-      _.partialRight(_.set, 'svg', reactSVGAttributes),
+      _.partialRight(_.set, 'svg', reactSVGAttributesCrawled),
       _.partialRight(
         _.mapValues,
         (attributes, tagName) => (
-          _.uniq(attributes.concat(hardCodedReactHTMLAttributes[tagName] || []))
+          _.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
         ),
       ),
       _.partialRight(_.mapValues, _.sortBy),
+      _.partialRight(_.pickBy, attributes => !_.isEmpty(attributes)),
     ])(HTMLElementAttributes)
 
     fs.writeFile(

@@ -18,18 +18,26 @@ function areArraysApatheticallySorted(array) {
   return array.every(items => /^[a-z-]+$/.test(...items.map(item => item[0])))
 }
 
+function areArraysNotEmpty(array) {
+  return array.every(items => items.length !== 0)
+}
+
 describe('react-html-attributes', () => {
   const attributeLists = _.values(reactHtmlAttributes)
 
-  it('should have a list of all available names', () => {
+  it('should have a store of all string attributes', () => {
     expect(_.flatten(attributeLists)).to.satisfy(isArrayOfStrings)
   })
 
-  it('should have a list of all unique names', () => {
+  it('should have a store of all unique attributes', () => {
     expect(attributeLists).to.satisfy(areArraysUnique)
   })
 
-  it('should have a list of apathetically sorted names', () => {
+  it('should have a store of apathetically sorted attributes', () => {
     expect(attributeLists).to.satisfy(areArraysApatheticallySorted)
+  })
+
+  it('should have a store of non-empty attributes', () => {
+    expect(attributeLists).to.satisfy(areArraysNotEmpty)
   })
 })

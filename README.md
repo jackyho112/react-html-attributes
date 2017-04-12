@@ -4,7 +4,8 @@
 # react-html-attributes
 
 A store of html attributes keyed by their respective tags. Global attributes
-are under `'*'`.
+are under `'*'`. HTML tags that don't have any React-supported non-global
+attributes won't have keys in the store.
 
 Reference: https://facebook.github.io/react/docs/dom-elements.html
 
