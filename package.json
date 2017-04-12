@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jackyho112/react-html-attributes"
+    "url": "https://github.com/jackyho112/react-html-attributes"
   },
   "keywords": [
     "html",
@@ -68,7 +68,7 @@
     "npm-run-all": "2.3.0",
     "nyc": "7.1.0",
     "rimraf": "2.5.4",
-    "semantic-release": "4.3.5",
+    "semantic-release": "^6.3.2",
     "validate-commit-msg": "2.12.1",
     "webpack": "1.13.1"
   },
