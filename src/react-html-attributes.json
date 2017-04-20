@@ -120,6 +120,7 @@
     "action",
     "method",
     "name",
+    "novalidate",
     "target"
   ],
   "frame": [
