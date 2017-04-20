@@ -98,6 +98,16 @@ jsdom.env(
       _.partialRight(_.pickBy, attributes => !_.isEmpty(attributes)),
     ])(HTMLElementAttributes)
 
+    const reactSpecificAttributes = _.reduce(
+      _.omit(reactHtmlAttributesFull, ['svg']),
+      (result, value) => _.pull(result, ...value),
+      reactHtmlAttributesCrawled,
+    )
+
+    reactHtmlAttributesFull['*'] = _.sortBy(
+      reactHtmlAttributesFull['*'].concat(reactSpecificAttributes),
+    )
+
     fs.writeFile(
       join(__dirname, 'src', attributeFileName),
       `${JSON.stringify(reactHtmlAttributesFull, 0, 2)}\n`,
