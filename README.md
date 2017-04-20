@@ -3,9 +3,10 @@
 
 # react-html-attributes
 
-A store of html attributes keyed by their respective tags. Global attributes
-are under `'*'`. HTML tags that don't have any React-supported non-global
-attributes won't have keys in the store.
+A store of React HTML attributes keyed by their respective tags. Global
+attributes and React specific attributes are under `'*'`. A HTML tag will map
+to all the html attributes supported by React. HTML tags that don't have any
+React-supported non-global attributes won't have keys in the store.
 
 Reference: https://facebook.github.io/react/docs/dom-elements.html
 
@@ -49,6 +50,14 @@ Returns:
   "suppressContentEditableWarning",
   "title"
 ]
+```
+
+## Contributing
+
+Commit by
+
+```bash
+npm run commit
 ```
 
 ## License
