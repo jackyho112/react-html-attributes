@@ -11,6 +11,8 @@ const reactDomElementDocUrl = 'https://facebook.github.io/react/docs/dom-element
 const jQueryScriptUrl = 'http://code.jquery.com/jquery.js'
 const attributeListParentNodeSelector = '.highlight'
 const attributeFileName = 'react-html-attributes.json'
+const crawledHTMLAttributesFileName = 'crawled-react-html-attributes.test.json'
+const crawledSVGAttributesFileName = 'crawled-react-svg-attributes.test.json'
 
 // attributes that cannot be crawled on the above website, copied from that site
 const reactHtmlAttributesCopied = {
@@ -94,23 +96,38 @@ jsdom.env(
           _.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
         ),
       ),
+      (reactHtmlAttributes) => {
+        const reactSpecificAttributes = _.reduce(
+          _.omit(reactHtmlAttributes, ['svg']),
+          (result, value) => _.pull(result, ...value),
+          [].concat(reactHtmlAttributesCrawled),
+        )
+
+        return _.set(
+          reactHtmlAttributes,
+          '*',
+          reactHtmlAttributes['*'].concat(reactSpecificAttributes),
+        )
+      },
       _.partialRight(_.mapValues, _.sortBy),
       _.partialRight(_.pickBy, attributes => !_.isEmpty(attributes)),
     ])(HTMLElementAttributes)
 
-    const reactSpecificAttributes = _.reduce(
-      _.omit(reactHtmlAttributesFull, ['svg']),
-      (result, value) => _.pull(result, ...value),
-      reactHtmlAttributesCrawled,
-    )
-
-    reactHtmlAttributesFull['*'] = _.sortBy(
-      reactHtmlAttributesFull['*'].concat(reactSpecificAttributes),
-    )
-
     fs.writeFile(
       join(__dirname, 'src', attributeFileName),
       `${JSON.stringify(reactHtmlAttributesFull, 0, 2)}\n`,
+      bail,
+    )
+
+    fs.writeFile(
+      join(__dirname, 'src', crawledHTMLAttributesFileName),
+      `${JSON.stringify(reactHtmlAttributesCrawled, 0, 2)}\n`,
+      bail,
+    )
+
+    fs.writeFile(
+      join(__dirname, 'src', crawledSVGAttributesFileName),
+      `${JSON.stringify(reactSVGAttributesCrawled, 0, 2)}\n`,
       bail,
     )
   },

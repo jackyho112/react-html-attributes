@@ -5,6 +5,8 @@
 import { expect } from 'chai'
 import _ from 'lodash'
 import reactHtmlAttributes from './react-html-attributes.json'
+import crawledReactHtmlAttributes from './crawled-react-html-attributes.test.json'
+import crawledReactSVGAttributes from './crawled-react-svg-attributes.test.json'
 
 function isArrayOfStrings(array) {
   return array.every(item => typeof item === 'string')
@@ -28,6 +30,10 @@ function areArraysApatheticallySorted(array) {
 
 function areArraysNotEmpty(array) {
   return array.every(items => items.length !== 0)
+}
+
+function isArrayIncluded(array, arrayToVerify) {
+  return _.includes(array, ...arrayToVerify)
 }
 
 describe('react-html-attributes', () => {
@@ -55,5 +61,17 @@ describe('react-html-attributes', () => {
 
   it('should have a store of non-empty attributes', () => {
     expect(attributeLists).to.satisfy(areArraysNotEmpty)
+  })
+
+  it('should include all crawled html attributes supported by react', () => {
+    expect(
+      isArrayIncluded(_.flatten(attributeLists), crawledReactHtmlAttributes),
+    ).to.equal(true)
+  })
+
+  it('should include all crawled SVG attributes supported by react', () => {
+    expect(
+      isArrayIncluded(_.flatten(attributeLists), crawledReactSVGAttributes),
+    ).to.equal(true)
   })
 })

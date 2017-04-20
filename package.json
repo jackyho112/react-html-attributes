@@ -7,7 +7,7 @@
     "commit": "git-cz",
     "prebuild": "rimraf dist",
     "build": "npm-run-all --parallel build:*",
-    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js,build-json.js src",
+    "build:main": "babel --copy-files --out-dir dist --ignore *.test.*,*.build.js, src",
     "build:umd": "webpack --output-filename index.umd.js",
     "build:umd.min": "webpack --output-filename index.umd.min.js -p",
     "test": "cross-env NODE_ENV=test nyc mocha",
@@ -16,7 +16,7 @@
     "lint": "eslint src --fix",
     "validate": "npm-run-all --parallel test lint build",
     "release": "semantic-release pre && npm publish && semantic-release post",
-    "compile-build-script": "babel src/build-json.js --out-file build-json-compiled.js",
+    "compile-build-script": "babel src/build-json.build.js --out-file build-json-compiled.js",
     "update-attribute-file": "npm run compile-build-script && node build-json-compiled.js"
   },
   "repository": {
