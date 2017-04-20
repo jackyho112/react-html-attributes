@@ -44,6 +44,7 @@
     "html-element-attributes": "^1.0.0"
   },
   "devDependencies": {
+    "@bubltechnology/customizable-commit-analyzer": "1.0.2-0",
     "babel-cli": "6.11.4",
     "babel-loader": "6.2.4",
     "babel-plugin-istanbul": "1.0.3",
@@ -111,5 +112,8 @@
       "pre-commit": "npm run validate && npm run update-attribute-file",
       "commit-msg": "validate-commit-msg"
     }
+  },
+  "release": {
+    "analyzeCommits": "@bubltechnology/customizable-commit-analyzer"
   }
 }
