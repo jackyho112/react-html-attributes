@@ -25,7 +25,7 @@ function areArraysUnique(array) {
 }
 
 function areArraysApatheticallySorted(array) {
-  return array.every(items => /^[a-z-]+$/.test(...items.map(item => item[0])))
+  return array.every(items => items.join(' ') === _.sortBy(items).join(' '))
 }
 
 function areArraysNotEmpty(array) {
