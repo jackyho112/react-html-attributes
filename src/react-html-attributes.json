@@ -116,6 +116,7 @@
     "cite"
   ],
   "button": [
+    "autofocus",
     "disabled",
     "form",
     "name",
@@ -210,6 +211,7 @@
     "alt",
     "autoCapitalize",
     "autoCorrect",
+    "autofocus",
     "checked",
     "defaultChecked",
     "defaultValue",
@@ -237,6 +239,7 @@
     "cite"
   ],
   "keygen": [
+    "autofocus",
     "challenge",
     "disabled",
     "form",
@@ -341,6 +344,7 @@
     "type"
   ],
   "select": [
+    "autofocus",
     "defaultValue",
     "disabled",
     "form",
@@ -379,6 +383,7 @@
   "textarea": [
     "autoCapitalize",
     "autoCorrect",
+    "autofocus",
     "cols",
     "defaultValue",
     "disabled",
