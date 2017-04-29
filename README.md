@@ -8,6 +8,9 @@ attributes and React specific attributes are under `'*'`. A HTML tag will map
 to all the html attributes supported by React. HTML tags that don't have any
 React-supported non-global attributes won't have keys in the store.
 
+One more note: all SVG element attributes supported by React are under the
+`'svg'` key to avoid too many duplicated values and unnecessary size increase.
+
 Reference: https://facebook.github.io/react/docs/dom-elements.html
 
 ## Installation
