@@ -111,13 +111,17 @@ Commit by
 npm run commit
 ```
 
+I am open to suggestions in improving this library. If you know any page that
+has a better list related to SVG properties, HTML properties or React-supported
+HTML properties to be crawled. Please let me know!
+
 ## License
 
 [MIT][license] © Jacky Ho
 
 <!-- Definition -->
 [license]: LICENSE
-[build-page]: https://travis-ci.org/wooorm/html-element-attributes
+[build-page]: https://travis-ci.org/jackyho112/react-html-attributes.svg
 [build-badge]: https://img.shields.io/travis/jackyho112/react-html-attributes.svg
 [version-badge]: https://img.shields.io/npm/v/react-html-attributes.svg?style=flat-square
 [package]: https://www.npmjs.com/package/react-html-attributes
