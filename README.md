@@ -8,10 +8,15 @@ attributes and React specific attributes are under `'*'`. A HTML tag will map
 to all the html attributes supported by React. HTML tags that don't have any
 React-supported non-global attributes won't have keys in the store.
 
-One more note: all SVG element attributes supported by React are under the
-`'svg'` key to avoid too many duplicated values and unnecessary size increase.
+The store also has all HTML and SVG tags supported by React under the key,
+`'elements'` which will map to an object with keys, `'svg'` and `'html'`.
 
-Reference: https://facebook.github.io/react/docs/dom-elements.html
+One more note: all SVG element attributes supported by React are under the
+`'svg'` key to avoid too many duplicated values and unnecessary file size.
+
+Reference:
+http://reactjs.cn/react/docs/tags-and-attributes.html
+https://facebook.github.io/react/docs/dom-elements.html
 
 ## Installation
 
@@ -100,6 +105,36 @@ Returns:
   "title",
   "useMap",
   "wmode"
+]
+```
+
+```javascript
+htmlElementAttributes['elements']['svg'];
+```
+
+returns:
+
+```javascript
+[
+  "circle",
+  "clipPath",
+  "defs",
+  "ellipse",
+  "g",
+  "image",
+  "line",
+  "linearGradient",
+  "mask",
+  "path",
+  "pattern",
+  "polygon",
+  "polyline",
+  "radialGradient",
+  "rect",
+  "stop",
+  "svg",
+  "text",
+  "tspan"
 ]
 ```
 

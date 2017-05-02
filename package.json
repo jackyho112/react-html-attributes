@@ -17,7 +17,7 @@
     "validate": "npm-run-all --parallel test lint build",
     "release": "semantic-release pre && npm publish && semantic-release post",
     "compile-build-script": "babel src/build-json.build.js --out-file build-json-compiled.js",
-    "update-attribute-file": "npm run compile-build-script && node build-json-compiled.js"
+    "update-json-files": "npm run compile-build-script && node build-json-compiled.js"
   },
   "repository": {
     "type": "git",
@@ -109,7 +109,7 @@
       "path": "cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run validate && npm run update-attribute-file",
+      "pre-commit": "npm run validate && npm run update-json-files",
       "commit-msg": "validate-commit-msg"
     }
   },

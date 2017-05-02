@@ -5,8 +5,10 @@
 import { expect } from 'chai'
 import _ from 'lodash'
 import reactHtmlAttributes from './react-html-attributes.json'
-import crawledReactHtmlAttributes from './crawled-react-html-attributes.test.json'
+import crawledReactHTMLAttributes from './crawled-react-html-attributes.test.json'
 import crawledReactSVGAttributes from './crawled-react-svg-attributes.test.json'
+import crawledReactHTMLTags from './crawled-react-html-elements.test.json'
+import crawledReactSVGTags from './crawled-react-svg-elements.test.json'
 
 function isArrayOfStrings(array) {
   return array.every(item => typeof item === 'string')
@@ -37,7 +39,7 @@ function isArrayIncluded(array, arrayToVerify) {
 }
 
 describe('react-html-attributes', () => {
-  const attributeLists = _.values(reactHtmlAttributes)
+  const attributeLists = _.values(_.omit(reactHtmlAttributes, ['elements']))
 
   it('should have a store of all string attributes', () => {
     expect(_.flatten(attributeLists)).to.satisfy(isArrayOfStrings)
@@ -65,13 +67,31 @@ describe('react-html-attributes', () => {
 
   it('should include all crawled html attributes supported by react', () => {
     expect(
-      isArrayIncluded(_.flatten(attributeLists), crawledReactHtmlAttributes),
+      isArrayIncluded(_.flatten(attributeLists), crawledReactHTMLAttributes),
     ).to.equal(true)
   })
 
   it('should include all crawled SVG attributes supported by react', () => {
     expect(
       isArrayIncluded(_.flatten(attributeLists), crawledReactSVGAttributes),
+    ).to.equal(true)
+  })
+
+  it('should include all crawled HTML element tags supported by react', () => {
+    expect(
+      isArrayIncluded(
+        reactHtmlAttributes.elements.html,
+        crawledReactHTMLTags,
+      ),
+    ).to.equal(true)
+  })
+
+  it('should include all crawled SVG element tags supported by react', () => {
+    expect(
+      isArrayIncluded(
+        reactHtmlAttributes.elements.svg,
+        crawledReactSVGTags,
+      ),
     ).to.equal(true)
   })
 })
