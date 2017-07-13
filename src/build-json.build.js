@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import fp from 'lodash/fp'
 import HTMLElementAttributes from 'html-element-attributes/index.json'
 import jsdom from 'jsdom'
 import bail from 'bail'
@@ -101,47 +101,39 @@ jsdom.env(
       jQuery, htmlAttributeListTitleSelector,
     )
 
-    const reactHtmlAttributesFull = _.flow([
+    const reactHtmlAttributesFull = fp.pipe([
       // Get rid of normal HTML attributes that React doesn't support
-      _.partialRight(
-        _.mapValues,
-        attributes => _.intersection(attributes, reactHtmlAttributesCrawled),
-      ),
+      fp.mapValues(attributes => fp.intersection(reactHtmlAttributesCrawled)(attributes)),
 
-      _.partialRight(_.set, 'svg', reactSVGAttributesCrawled),
+      fp.set('svg', reactSVGAttributesCrawled),
 
       // Add supported attributes copied from the site
-      _.partialRight(
-        _.mapValues,
-        (attributes, tagName) => (
-          _.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
-        ),
-      ),
+      fp.mapValues.convert({ 'cap': false })((attributes, tagName) => (
+        fp.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
+      )),
 
       // Pull all the included crawled attributes and put the rest labelled
       // as being React specific into the global attributes
       (reactHtmlAttributes) => {
-        const reactSpecificAttributes = _.reduce(
-          _.omit(reactHtmlAttributes, ['svg']),
-          (result, value) => _.pull(result, ...value),
+        const reactSpecificAttributes = fp.reduce(
+          (result, value) => fp.pullAll(value)(result),
           [].concat(reactHtmlAttributesCrawled),
-        )
+        )(fp.omit(['svg'])(reactHtmlAttributes))
 
-        return _.set(
-          reactHtmlAttributes,
+        return fp.set(
           '*',
           reactHtmlAttributes['*'].concat(reactSpecificAttributes),
-        )
+        )(reactHtmlAttributes)
       },
 
-      _.partialRight(_.mapValues, _.sortBy),
-      _.partialRight(_.pickBy, attributes => !_.isEmpty(attributes)),
+      fp.mapValues(fp.sortBy(fp.identity)),
+      fp.pickBy(attributes => !fp.isEmpty(attributes)),
     ])(HTMLElementAttributes)
 
-    const reactHtmlAttributesAndTags = _.flow([
-      _.partialRight(_.set, 'elements', { html: [], svg: [] }),
-      _.partialRight(_.set, 'elements.html', htmlTags),
-      _.partialRight(_.set, 'elements.svg', svgTags),
+    const reactHtmlAttributesAndTags = fp.pipe([
+      fp.set('elements', { html: [], svg: [] }),
+      fp.set('elements.html', htmlTags),
+      fp.set('elements.svg', svgTags),
     ])(reactHtmlAttributesFull)
 
     const jsonFilesToWrite = {
