@@ -4,24 +4,23 @@ import jsdom from 'jsdom'
 import bail from 'bail'
 import fs from 'fs'
 import { join } from 'path'
+import svgTags from 'svg-tags'
+import htmlTags from 'html-tags'
 
-const htmlAttributeListTitleSelector = 'h3:contains("HTML Attributes")'
-const svgAttributeListTitleSelector = 'h3:contains("SVG Attributes")'
-const htmlElementTagListTitleSelector = 'h4:contains("HTML Elements")'
-const svgElementTagListTitleSelector = 'h4:contains("SVG elements")'
+const htmlAttributeListTitleSelector = 'h2:contains("All Supported HTML Attributes")'
+const svgAttributeListTitleSelector = 'h2:contains("All Supported SVG Attributes")'
 
-const reactDomElementDocUrl = 'http://reactjs.cn/react/docs/tags-and-attributes.html'
+const reactDomElementDocUrl = 'https://facebook.github.io/react/docs/dom-elements.html'
 const jQueryScriptUrl = 'http://code.jquery.com/jquery.js'
 const attributeListParentNodeSelector = '.highlight'
 const attributeFileName = 'react-html-attributes.json'
 const crawledHTMLAttributesFileName = 'crawled-react-html-attributes.test.json'
 const crawledSVGAttributesFileName = 'crawled-react-svg-attributes.test.json'
-const crawledHTMLElementsFileName = 'crawled-react-html-elements.test.json'
-const crawledSVGElementSFileName = 'crawled-react-svg-elements.test.json'
+const HTMLElementsFileName = 'crawled-react-html-elements.test.json'
+const SVGElementSFileName = 'crawled-react-svg-elements.test.json'
 
-// attributes that cannot be crawled on the above website, copied from it
-// also added some attributes missing from the above website but present on
-// https://facebook.github.io/react/docs/dom-elements.html
+// These are attributes that are not crawled from the above website and copied
+// directly from that site.
 const reactHtmlAttributesCopied = {
   '*': [
     'dangerouslySetInnerHTML',
@@ -73,11 +72,19 @@ const reactHtmlAttributesCopied = {
   ],
 }
 
-const getList = (jQuery, listTitleSelector) => {
+function getList(jQuery, listTitleSelector) {
   const titleNode = jQuery(listTitleSelector)
   const listNode = titleNode.nextAll(attributeListParentNodeSelector).first()
 
   return listNode.text().replace(/\n/g, ' ').trim().split(' ')
+}
+
+function writeJSONToFile(fileName, object) {
+  fs.writeFile(
+    join(__dirname, 'src', fileName),
+    `${JSON.stringify(object, 0, 2)}\n`,
+    bail,
+  )
 }
 
 jsdom.env(
@@ -93,26 +100,26 @@ jsdom.env(
     const reactHtmlAttributesCrawled = getList(
       jQuery, htmlAttributeListTitleSelector,
     )
-    const reactHtmlElementTagsCrawled = getList(
-      jQuery, htmlElementTagListTitleSelector,
-    )
-    const reactSvgElementTagsCrawled = getList(
-      jQuery, svgElementTagListTitleSelector,
-    )
 
-    // the main constructor function for the attribute part of the json
     const reactHtmlAttributesFull = _.flow([
+      // Get rid of normal HTML attributes that React doesn't support
       _.partialRight(
         _.mapValues,
         attributes => _.intersection(attributes, reactHtmlAttributesCrawled),
       ),
+
       _.partialRight(_.set, 'svg', reactSVGAttributesCrawled),
+
+      // Add supported attributes copied from the site
       _.partialRight(
         _.mapValues,
         (attributes, tagName) => (
           _.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
         ),
       ),
+
+      // Pull all the included crawled attributes and put the rest labelled
+      // as being React specific into the global attributes
       (reactHtmlAttributes) => {
         const reactSpecificAttributes = _.reduce(
           _.omit(reactHtmlAttributes, ['svg']),
@@ -126,45 +133,27 @@ jsdom.env(
           reactHtmlAttributes['*'].concat(reactSpecificAttributes),
         )
       },
+
       _.partialRight(_.mapValues, _.sortBy),
       _.partialRight(_.pickBy, attributes => !_.isEmpty(attributes)),
     ])(HTMLElementAttributes)
 
-    // the main contructor for the tag list
     const reactHtmlAttributesAndTags = _.flow([
       _.partialRight(_.set, 'elements', { html: [], svg: [] }),
-      _.partialRight(_.set, 'elements.html', reactHtmlElementTagsCrawled),
-      _.partialRight(_.set, 'elements.svg', reactSvgElementTagsCrawled),
+      _.partialRight(_.set, 'elements.html', htmlTags),
+      _.partialRight(_.set, 'elements.svg', svgTags),
     ])(reactHtmlAttributesFull)
 
-    fs.writeFile(
-      join(__dirname, 'src', attributeFileName),
-      `${JSON.stringify(reactHtmlAttributesAndTags, 0, 2)}\n`,
-      bail,
-    )
+    const jsonFilesToWrite = {
+      [attributeFileName]: reactHtmlAttributesAndTags,
+      [crawledHTMLAttributesFileName]: reactHtmlAttributesCrawled,
+      [crawledSVGAttributesFileName]: reactSVGAttributesCrawled,
+      [HTMLElementsFileName]: htmlTags,
+      [SVGElementSFileName]: svgTags,
+    }
 
-    fs.writeFile(
-      join(__dirname, 'src', crawledHTMLAttributesFileName),
-      `${JSON.stringify(reactHtmlAttributesCrawled, 0, 2)}\n`,
-      bail,
-    )
-
-    fs.writeFile(
-      join(__dirname, 'src', crawledSVGAttributesFileName),
-      `${JSON.stringify(reactSVGAttributesCrawled, 0, 2)}\n`,
-      bail,
-    )
-
-    fs.writeFile(
-      join(__dirname, 'src', crawledHTMLElementsFileName),
-      `${JSON.stringify(reactHtmlElementTagsCrawled, 0, 2)}\n`,
-      bail,
-    )
-
-    fs.writeFile(
-      join(__dirname, 'src', crawledSVGElementSFileName),
-      `${JSON.stringify(reactSvgElementTagsCrawled, 0, 2)}\n`,
-      bail,
-    )
+    Object.keys(jsonFilesToWrite).forEach((fileName) => {
+      writeJSONToFile(fileName, jsonFilesToWrite[fileName])
+    })
   },
 )

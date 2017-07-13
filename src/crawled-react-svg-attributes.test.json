@@ -227,6 +227,8 @@
   "xlinkShow",
   "xlinkTitle",
   "xlinkType",
+  "xmlns",
+  "xmlnsXlink",
   "xmlBase",
   "xmlLang",
   "xmlSpace",
