@@ -34,6 +34,7 @@
     "hrefLang",
     "htmlFor",
     "httpEquiv",
+    "icon",
     "id",
     "inlist",
     "inputMode",
@@ -276,19 +277,6 @@
   ],
   "map": [
     "name"
-  ],
-  "menu": [
-    "label",
-    "type"
-  ],
-  "menuitem": [
-    "checked",
-    "default",
-    "disabled",
-    "icon",
-    "label",
-    "title",
-    "type"
   ],
   "meta": [
     "content",
