@@ -10,13 +10,15 @@ React-supported non-global attributes won't have keys in the store.
 
 The store also has all HTML and SVG tags supported by React under the key,
 `'elements'` which will map to an object with keys, `'svg'` and `'html'`.
+The React docs have been updated to remove a list of tags supported, so it
+is assumed that React now supports all available tags. If that is not the
+case, please raise an issue [here](https://github.com/facebook/react/issues/new).
 
 One more note: all SVG element attributes supported by React are under the
 `'svg'` key to avoid too many duplicated values and unnecessary file size.
 
 Reference:
-http://reactjs.cn/react/docs/tags-and-attributes.html
-https://facebook.github.io/react/docs/dom-elements.html
+[React docs](https://facebook.github.io/react/docs/dom-elements.html)
 
 ## Installation
 
