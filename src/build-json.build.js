@@ -108,7 +108,7 @@ jsdom.env(
       fp.set('svg', reactSVGAttributesCrawled),
 
       // Add supported attributes copied from the site
-      fp.mapValues.convert({ 'cap': false })((attributes, tagName) => (
+      fp.mapValues.convert({ cap: false })((attributes, tagName) => (
         fp.uniq(attributes.concat(reactHtmlAttributesCopied[tagName] || []))
       )),
 
