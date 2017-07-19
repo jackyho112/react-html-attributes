@@ -40,9 +40,6 @@
   "dependencies": {
     "html-element-attributes": "^1.0.0"
   },
-  "peerDependencies": {
-    "html-element-attributes": "^1.0.0"
-  },
   "devDependencies": {
     "@bubltechnology/customizable-commit-analyzer": "1.0.2-0",
     "babel-cli": "6.11.4",
