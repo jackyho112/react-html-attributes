@@ -411,6 +411,7 @@
     "height",
     "loop",
     "muted",
+    "playsInline",
     "poster",
     "preload",
     "src",
