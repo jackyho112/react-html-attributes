@@ -31,7 +31,7 @@ npm install react-html-attributes
 ## Usage
 
 ```javascript
-var htmlElementAttributes = require('html-element-attributes');
+var htmlElementAttributes = require('react-html-attributes');
 ```
 
 ```javascript
