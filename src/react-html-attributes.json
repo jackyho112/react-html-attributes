@@ -179,7 +179,11 @@
     "action",
     "method",
     "name",
-    "target"
+    "target",
+    "onChange",
+    "onInput",
+    "onInvalid",
+    "onSubmit"
   ],
   "frame": [
     "name",
