@@ -26,10 +26,6 @@ function areArraysUnique(array) {
   return array.every(items => items.length === _.uniq(items).length)
 }
 
-function areArraysApatheticallySorted(array) {
-  return array.every(items => items.join(' ') === _.sortBy(items).join(' '))
-}
-
 function areArraysNotEmpty(array) {
   return array.every(items => items.length !== 0)
 }
@@ -55,10 +51,6 @@ describe('react-html-attributes', () => {
 
   it('should have a store of all unique attributes', () => {
     expect(attributeLists).to.satisfy(areArraysUnique)
-  })
-
-  it('should have a store of apathetically sorted attributes', () => {
-    expect(attributeLists).to.satisfy(areArraysApatheticallySorted)
   })
 
   it('should have a store of non-empty attributes', () => {
