@@ -85,7 +85,8 @@
     "rel",
     "shape",
     "target",
-    "type"
+    "type",
+    "onClick",
   ],
   "abbr": [
     "title"
