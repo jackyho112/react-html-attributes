@@ -53,6 +53,8 @@
     "mediaGroup",
     "minLength",
     "noValidate",
+    "onBlur",
+    "onFocus",
     "prefix",
     "property",
     "radioGroup",
