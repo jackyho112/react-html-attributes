@@ -1,6 +1,6 @@
 {
   "name": "react-html-attributes",
-  "version": "0.0.0-semantically-released",
+  "version": "1.4.5",
   "description": "A react supported html attributes store keyed by their tags",
   "main": "dist/index.js",
   "scripts": {
@@ -103,15 +103,6 @@
           "istanbul"
         ]
       }
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "yarn run validate && yarn run update-json-files",
-      "commit-msg": "validate-commit-msg"
     }
   },
   "release": {
