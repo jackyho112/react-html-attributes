@@ -1,6 +1,6 @@
 {
   "name": "react-html-attributes",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "A react supported html attributes store keyed by their tags",
   "main": "dist/index.js",
   "scripts": {
