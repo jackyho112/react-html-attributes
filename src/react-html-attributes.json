@@ -93,15 +93,8 @@
     "type",
     "onClick"
   ],
-  "abbr": [
-    "title"
-  ],
-  "applet": [
-    "alt",
-    "height",
-    "name",
-    "width"
-  ],
+  "abbr": ["title"],
+  "applet": ["alt", "height", "name", "width"],
   "area": [
     "alt",
     "coords",
@@ -112,74 +105,23 @@
     "target",
     "type"
   ],
-  "audio": [
-    "controls",
-    "loop",
-    "muted",
-    "preload",
-    "src"
-  ],
-  "base": [
-    "href",
-    "target"
-  ],
-  "basefont": [
-    "size"
-  ],
-  "bdo": [
-    "dir"
-  ],
-  "blockquote": [
-    "cite"
-  ],
-  "button": [
-    "disabled",
-    "form",
-    "name",
-    "type",
-    "value"
-  ],
-  "canvas": [
-    "height",
-    "width"
-  ],
-  "col": [
-    "span",
-    "width"
-  ],
-  "colgroup": [
-    "span",
-    "width"
-  ],
-  "data": [
-    "value"
-  ],
-  "del": [
-    "cite"
-  ],
-  "details": [
-    "open"
-  ],
-  "dfn": [
-    "title"
-  ],
-  "dialog": [
-    "open"
-  ],
-  "embed": [
-    "height",
-    "src",
-    "type",
-    "width"
-  ],
-  "fieldset": [
-    "disabled",
-    "form",
-    "name"
-  ],
-  "font": [
-    "size"
-  ],
+  "audio": ["controls", "loop", "muted", "preload", "src"],
+  "base": ["href", "target"],
+  "basefont": ["size"],
+  "bdo": ["dir"],
+  "blockquote": ["cite"],
+  "button": ["disabled", "form", "name", "type", "value"],
+  "canvas": ["height", "width"],
+  "col": ["span", "width"],
+  "colgroup": ["span", "width"],
+  "data": ["value"],
+  "del": ["cite"],
+  "details": ["open"],
+  "dfn": ["title"],
+  "dialog": ["open"],
+  "embed": ["height", "src", "type", "width"],
+  "fieldset": ["disabled", "form", "name"],
+  "font": ["size"],
   "form": [
     "accept",
     "action",
@@ -191,41 +133,13 @@
     "onInvalid",
     "onSubmit"
   ],
-  "frame": [
-    "name",
-    "scrolling",
-    "src"
-  ],
-  "frameset": [
-    "cols",
-    "rows"
-  ],
-  "head": [
-    "profile"
-  ],
-  "hr": [
-    "size",
-    "width"
-  ],
-  "html": [
-    "manifest"
-  ],
-  "iframe": [
-    "height",
-    "name",
-    "sandbox",
-    "scrolling",
-    "src",
-    "width"
-  ],
-  "img": [
-    "alt",
-    "height",
-    "name",
-    "sizes",
-    "src",
-    "width"
-  ],
+  "frame": ["name", "scrolling", "src"],
+  "frameset": ["cols", "rows"],
+  "head": ["profile"],
+  "hr": ["size", "width"],
+  "html": ["manifest"],
+  "iframe": ["height", "name", "sandbox", "scrolling", "src", "width"],
+  "img": ["alt", "height", "name", "sizes", "src", "width"],
   "input": [
     "accept",
     "alt",
@@ -244,6 +158,7 @@
     "multiple",
     "name",
     "onChange",
+    "onBlur",
     "pattern",
     "placeholder",
     "required",
@@ -256,22 +171,10 @@
     "value",
     "width"
   ],
-  "ins": [
-    "cite"
-  ],
-  "keygen": [
-    "challenge",
-    "disabled",
-    "form",
-    "name"
-  ],
-  "label": [
-    "form"
-  ],
-  "li": [
-    "type",
-    "value"
-  ],
+  "ins": ["cite"],
+  "keygen": ["challenge", "disabled", "form", "name"],
+  "label": ["form"],
+  "li": ["type", "value"],
   "link": [
     "color",
     "href",
@@ -285,71 +188,19 @@
     "title",
     "type"
   ],
-  "map": [
-    "name"
-  ],
-  "meta": [
-    "content",
-    "name"
-  ],
-  "meter": [
-    "high",
-    "low",
-    "max",
-    "min",
-    "optimum",
-    "value"
-  ],
-  "object": [
-    "data",
-    "form",
-    "height",
-    "name",
-    "type",
-    "width"
-  ],
-  "ol": [
-    "reversed",
-    "start",
-    "type"
-  ],
-  "optgroup": [
-    "disabled",
-    "label"
-  ],
-  "option": [
-    "disabled",
-    "label",
-    "selected",
-    "value"
-  ],
-  "output": [
-    "form",
-    "name"
-  ],
-  "param": [
-    "name",
-    "type",
-    "value"
-  ],
-  "pre": [
-    "width"
-  ],
-  "progress": [
-    "max",
-    "value"
-  ],
-  "q": [
-    "cite"
-  ],
-  "script": [
-    "async",
-    "defer",
-    "integrity",
-    "nonce",
-    "src",
-    "type"
-  ],
+  "map": ["name"],
+  "meta": ["content", "name"],
+  "meter": ["high", "low", "max", "min", "optimum", "value"],
+  "object": ["data", "form", "height", "name", "type", "width"],
+  "ol": ["reversed", "start", "type"],
+  "optgroup": ["disabled", "label"],
+  "option": ["disabled", "label", "selected", "value"],
+  "output": ["form", "name"],
+  "param": ["name", "type", "value"],
+  "pre": ["width"],
+  "progress": ["max", "value"],
+  "q": ["cite"],
+  "script": ["async", "defer", "integrity", "nonce", "src", "type"],
   "select": [
     "defaultValue",
     "disabled",
@@ -361,31 +212,11 @@
     "size",
     "value"
   ],
-  "slot": [
-    "name"
-  ],
-  "source": [
-    "media",
-    "sizes",
-    "src",
-    "type"
-  ],
-  "style": [
-    "media",
-    "nonce",
-    "title",
-    "type"
-  ],
-  "table": [
-    "summary",
-    "width"
-  ],
-  "td": [
-    "headers",
-    "height",
-    "scope",
-    "width"
-  ],
+  "slot": ["name"],
+  "source": ["media", "sizes", "src", "type"],
+  "style": ["media", "nonce", "title", "type"],
+  "table": ["summary", "width"],
+  "td": ["headers", "height", "scope", "width"],
   "textarea": [
     "autoCapitalize",
     "autoCorrect",
@@ -401,21 +232,9 @@
     "value",
     "wrap"
   ],
-  "th": [
-    "headers",
-    "height",
-    "scope",
-    "width"
-  ],
-  "track": [
-    "default",
-    "kind",
-    "label",
-    "src"
-  ],
-  "ul": [
-    "type"
-  ],
+  "th": ["headers", "height", "scope", "width"],
+  "track": ["default", "kind", "label", "src"],
+  "ul": ["type"],
   "video": [
     "controls",
     "height",
